@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DSRT - Digital Smart Revise Technology</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Efek parallax */
-    .parallax {
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
+    .parallax { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
   </style>
 </head>
 <body class="bg-black text-white">
 
   <!-- NAVBAR -->
   <nav class="fixed w-full z-20 top-0 left-0 bg-transparent px-6 md:px-12 py-4 flex justify-between items-center">
-    <a href="#" class="text-xl font-bold">DSRT</a>
-    <button onclick="openModal('login')" class="bg-gradient-to-r from-cyan-400 to-purple-600 px-4 py-2 rounded-full font-semibold hover:scale-105 transition">Login</button>
+    <a href="index.html" class="text-xl font-bold">DSRT</a>
+    <div class="flex items-center gap-3">
+      <a href="login.html" class="bg-gradient-to-r from-cyan-400 to-purple-600 px-4 py-2 rounded-full font-semibold hover:scale-105 transition">Login</a>
+      <a href="register.html" class="px-4 py-2 rounded-full border border-gray-700 text-sm">Register</a>
+    </div>
   </nav>
 
-  <!-- HERO SECTION PARALLAX -->
+  <!-- HERO -->
   <section class="relative min-h-screen flex flex-col items-center justify-center text-center parallax"
     style="background-image: url('https://source.unsplash.com/1920x1080/?fantasy,abstract');">
     <div class="bg-black/50 absolute inset-0"></div>
@@ -33,211 +30,43 @@
       <p class="mt-4 text-sm md:text-base max-w-xl mx-auto">
         Desain Bebas. Edit Tanpa Batas. Platform kreatif dengan teknologi AI dan kontrol manual profesional.
       </p>
-      <a href="#tentang"
-        class="mt-6 inline-block px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-600 text-white font-semibold shadow-lg hover:scale-105 hover:shadow-purple-500/50 transition transform duration-300">
+      <a href="login.html"
+        class="mt-6 inline-block px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-600 text-white font-semibold shadow-lg hover:scale-105 transition transform duration-300">
         Mulai Sekarang
       </a>
     </div>
   </section>
 
-  <!-- TENTANG KAMI -->
+  <!-- TENTANG -->
   <section id="tentang" class="py-20 bg-gray-900 px-6 md:px-20 text-center">
     <h2 class="text-3xl md:text-4xl font-bold mb-6">Tentang Kami</h2>
     <p class="max-w-3xl mx-auto text-gray-300 leading-relaxed">
-      DSRT (Digital Smart Revise Technology) adalah solusi modern untuk pengeditan visual yang menggabungkan kekuatan Artificial Intelligence
-      dan sentuhan manual profesional. Kami hadir untuk membantu kreator, fotografer, dan desainer menghasilkan karya berkualitas tinggi
-      dengan cepat dan efisien.
+      DSRT (Digital Smart Revise Technology) menggabungkan AI & pengeditan manual untuk hasil profesional.
     </p>
   </section>
 
-  <!-- FITUR -->
+  <!-- FITUR SINGKAT -->
   <section class="py-20 bg-black px-6 md:px-20">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Fitur Unggulan</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg">
         <h3 class="text-xl font-semibold mb-3">Manual Tool + Template</h3>
-        <p class="text-gray-400">Edit manual dan gunakan template “Capsule” untuk hasil cepat dan presisi.</p>
+        <p class="text-gray-400">Edit manual dan template “Capsule”.</p>
       </div>
-      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg">
         <h3 class="text-xl font-semibold mb-3">HD + Extender</h3>
-        <p class="text-gray-400">Perbesar resolusi dan perluas gambar tanpa mengorbankan kualitas.</p>
+        <p class="text-gray-400">Perbesar resolusi tanpa kehilangan detail.</p>
       </div>
-      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg">
         <h3 class="text-xl font-semibold mb-3">Filter AI</h3>
-        <p class="text-gray-400">Terapkan filter cerdas yang disesuaikan dengan gaya visual pilihan Anda.</p>
+        <p class="text-gray-400">Filter pintar sesuai gaya visual.</p>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-950 py-6 text-center text-gray-500 text-sm">
     All Rights Reserved © DSRT 2025
   </footer>
-
-  <!-- LOGIN/REGISTER/FORGOT MODAL -->
-  <div id="authModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-gray-900 p-6 rounded-xl w-full max-w-md relative">
-      <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white">&times;</button>
-
-      <!-- LOGIN FORM -->
-      <div id="form-login">
-        <h2 class="text-2xl font-bold mb-4">Login</h2>
-        <!-- NOTE: demo creds below are used by JS. This is insecure for production. -->
-        <input id="login-email" type="email" placeholder="Email" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
-        <input id="login-password" type="password" placeholder="Password" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
-        <button id="btn-login" class="w-full bg-gradient-to-r from-cyan-400 to-purple-600 py-2 rounded font-semibold">Masuk</button>
-        <div class="mt-4 text-sm flex justify-between">
-          <a href="#" onclick="switchForm('register')" class="text-cyan-400">Register</a>
-          <a href="#" onclick="switchForm('forgot')" class="text-purple-400">Forgot Password?</a>
-        </div>
-        <p class="mt-3 text-xs text-yellow-300">Catatan: Untuk demo, gunakan <b>fengbayu@gmail.com</b> / <b>developerdsrt</b></p>
-      </div>
-
-      <!-- REGISTER FORM (demo: simpan ke localStorage) -->
-      <div id="form-register" class="hidden">
-        <h2 class="text-2xl font-bold mb-4">Register</h2>
-        <input id="reg-name" type="text" placeholder="Nama" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
-        <input id="reg-email" type="email" placeholder="Email" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
-        <input id="reg-password" type="password" placeholder="Password" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
-        <button id="btn-register" class="w-full bg-gradient-to-r from-cyan-400 to-purple-600 py-2 rounded font-semibold">Daftar</button>
-        <div class="mt-4 text-sm">
-          <a href="#" onclick="switchForm('login')" class="text-cyan-400">Sudah punya akun? Login</a>
-        </div>
-      </div>
-
-      <!-- FORGOT FORM (demo only) -->
-      <div id="form-forgot" class="hidden">
-        <h2 class="text-2xl font-bold mb-4">Forgot Password</h2>
-        <input id="forgot-email" type="email" placeholder="Email" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
-        <button id="btn-forgot" class="w-full bg-gradient-to-r from-cyan-400 to-purple-600 py-2 rounded font-semibold">Kirim Reset Link</button>
-        <div class="mt-4 text-sm">
-          <a href="#" onclick="switchForm('login')" class="text-cyan-400">Kembali ke Login</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    /* ------------------------------------------------------------------
-       DEMO AUTH FLOW (Front-end only)
-       - Accepts a built-in demo credential:
-         email:  fengbayu@gmail.com
-         pass:   developerdsrt
-       - Also allows "register" which stores one user in localStorage (demo)
-       - Stores session flag in sessionStorage: key 'dsrt_auth' = 'true'
-       IMPORTANT: This is insecure for production. Move to backend for real use.
-       ------------------------------------------------------------------ */
-
-    // Demo built-in credential (provided by user)
-    const DEMO_EMAIL = 'fengbayu@gmail.com';
-    const DEMO_PASS  = 'developerdsrt';
-
-    // Helpers to show/hide modal forms
-    function openModal(form='login') {
-      document.getElementById('authModal').classList.remove('hidden');
-      switchForm(form);
-    }
-    function closeModal() {
-      document.getElementById('authModal').classList.add('hidden');
-    }
-    function switchForm(form) {
-      ['login','register','forgot'].forEach(f => {
-        const el = document.getElementById('form-' + f);
-        if (!el) return;
-        if (f === form) el.classList.remove('hidden'); else el.classList.add('hidden');
-      });
-    }
-
-    // On login click
-    document.getElementById('btn-login').addEventListener('click', function(){
-      const email = document.getElementById('login-email').value.trim();
-      const pass  = document.getElementById('login-password').value;
-
-      // 1) Check demo built-in credential
-      if (email === DEMO_EMAIL && pass === DEMO_PASS) {
-        sessionStorage.setItem('dsrt_auth', 'true'); // demo session
-        sessionStorage.setItem('dsrt_user', JSON.stringify({email: email, name: 'Admin'}));
-        window.location.href = 'dashboard.html';
-        return;
-      }
-
-      // 2) Check localStorage-registered users (demo only)
-      const stored = localStorage.getItem('dsrt_users');
-      if (stored) {
-        try {
-          const users = JSON.parse(stored);
-          const found = users.find(u => u.email === email && u.password === pass);
-          if (found) {
-            sessionStorage.setItem('dsrt_auth', 'true');
-            sessionStorage.setItem('dsrt_user', JSON.stringify({email: found.email, name: found.name}));
-            window.location.href = 'dashboard.html';
-            return;
-          }
-        } catch(e) {
-          console.warn('dsrt_users parse error', e);
-        }
-      }
-
-      alert('Login gagal. Periksa email dan password atau daftar terlebih dahulu.');
-    });
-
-    // Register (demo) -> save to localStorage (insecure)
-    document.getElementById('btn-register').addEventListener('click', function(){
-      const name = document.getElementById('reg-name').value.trim();
-      const email = document.getElementById('reg-email').value.trim();
-      const pass = document.getElementById('reg-password').value;
-      if (!name || !email || !pass) { alert('Lengkapi semua field.'); return; }
-
-      let users = [];
-      const stored = localStorage.getItem('dsrt_users');
-      if (stored) {
-        try { users = JSON.parse(stored); } catch(e){ users = []; }
-      }
-      // prevent duplicate email
-      if (users.find(u => u.email === email)) { alert('Email sudah terdaftar. Silakan login.'); switchForm('login'); return; }
-
-      users.push({name, email, password: pass});
-      localStorage.setItem('dsrt_users', JSON.stringify(users));
-      alert('Pendaftaran berhasil. Silakan login.');
-      switchForm('login');
-      document.getElementById('login-email').value = email;
-    });
-
-    // Forgot password (demo)
-    document.getElementById('btn-forgot').addEventListener('click', function(){
-      const email = document.getElementById('forgot-email').value.trim();
-      if (!email) { alert('Masukkan email.'); return; }
-      // Demo: if email exists among stored users or demo email, show message
-      const stored = localStorage.getItem('dsrt_users');
-      let exists = false;
-      if (email === DEMO_EMAIL) exists = true;
-      if (stored) {
-        try {
-          const users = JSON.parse(stored);
-          if (users.find(u => u.email === email)) exists = true;
-        } catch(e){}
-      }
-      if (exists) {
-        alert('Link reset password telah dikirim (demo).');
-        switchForm('login');
-      } else {
-        alert('Email tidak ditemukan.');
-      }
-    });
-
-    // Close modal when click outside content
-    document.getElementById('authModal').addEventListener('click', function(e){
-      if (e.target === this) closeModal();
-    });
-
-    // If user already logged in in this session, redirect to dashboard
-    if (sessionStorage.getItem('dsrt_auth') === 'true') {
-      // Optionally auto-redirect (uncomment to enable):
-      // window.location.href = 'dashboard.html';
-    }
-
-  </script>
 
 </body>
 </html>
