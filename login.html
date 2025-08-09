@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — DSRT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white min-h-screen flex items-center justify-center p-6">
+
+  <div class="w-full max-w-md bg-gray-900 rounded-xl p-6 shadow-lg">
+    <h1 class="text-2xl font-bold mb-4 text-center">Masuk ke DSRT</h1>
+    <div id="msg" class="text-sm text-red-400 mb-3 hidden"></div>
+
+    <input id="email" type="email" placeholder="Email" class="w-full mb-3 p-3 rounded bg-gray-800 border border-gray-700" />
+    <input id="password" type="password" placeholder="Password" class="w-full mb-4 p-3 rounded bg-gray-800 border border-gray-700" />
+
+    <button id="btnLogin" class="w-full bg-gradient-to-r from-cyan-400 to-purple-600 py-3 rounded font-semibold">Masuk</button>
+
+    <div class="mt-4 text-center text-gray-400 text-sm">
+      Belum punya akun? <a href="register.html" class="text-cyan-300">Daftar</a>
+    </div>
+  </div>
+
+  <script>
+    // Ubah sesuai backend-mu
+    const API_BASE = "https://www.dsrt-artweb.online/api";
+
+    const elMsg = document.getElementById('msg');
+    function showMsg(text){ elMsg.textContent = text; elMsg.classList.remove('hidden'); }
+    function hideMsg(){ elMsg.classList.add('hidden'); elMsg.textContent = ''; }
+
+    document.getElementById('btnLogin').addEventListener('click', async function(){
+      hideMsg();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      if (!email || !password) { showMsg('Email dan password wajib diisi.'); return; }
+
+      try {
+        const res = await fetch(API_BASE + '/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(()=>({message: 'Login gagal'}));
+          showMsg(err.message || 'Login gagal');
+          return;
+        }
+        const data = await res.json();
+        // data expected: { token: '...', user: { name, email, ... } }
+        localStorage.setItem('dsrt_token', data.token);
+        localStorage.setItem('dsrt_user', JSON.stringify(data.user));
+        // redirect to dashboard
+        window.location.href = 'dashboard.html';
+      } catch (e) {
+        console.error(e);
+        showMsg('Gagal terhubung ke server. Cek internet atau endpoint API.');
+      }
+    });
+  </script>
+
+</body>
+</html>
