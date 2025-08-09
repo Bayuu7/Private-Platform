@@ -1,38 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSRT - Digital Smart Revise Technology</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Efek parallax */
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
 
-import React from "react";
-
-const LandingPage = () => {
-  return (
-    <div className="landing-page">
-      <header className="header">
-        <div className="logo">DSRT</div>
-        <button className="login-btn">Log in</button>
-      </header>
-      <section className="hero">
-        <h1 className="hero-title">Desain Bebas. Edit Tanpa Batas.</h1>
-        <p className="hero-subtitle">
-          DSRT adalah ruang kreatif modern yang memadukan AI dan kontrol manual
-          profesior untuk hasil visual yang maksimal.
-        </p>
-        <button className="cta-btn">Mulai Sekarang</button>
-      </section>
-      <section className="features">
-        <h2 className="features-title">Fitur Unggulan</h2>
-        <div className="feature-cards">
-          {['AI Tools', 'Manual Tools', 'Restore', 'Remove Watermark', 'Background'].map((title, idx) => (
-            <div className="feature-card" key={idx}>
-              <div className="feature-icon">
-                {/* Add icon here, for now it's just a placeholder */}
-                <span>💡</span>
-              </div>
-              <h3>{title}</h3>
-              <p>Deskripsi fitur {title}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+  <!-- HERO SECTION PARALLAX -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center parallax"
+    style="background-image: url('https://source.unsplash.com/1920x1080/?fantasy,abstract');">
+    <div class="bg-black/50 absolute inset-0"></div>
+    <div class="relative z-10 px-4">
+      <h1 class="text-6xl md:text-8xl font-bold tracking-wide">DSRT</h1>
+      <p class="mt-2 text-lg md:text-2xl font-light">Digital Smart Revise Technology</p>
+      <p class="mt-4 text-sm md:text-base max-w-xl mx-auto">
+        Desain Bebas. Edit Tanpa Batas. Platform kreatif dengan teknologi AI dan kontrol manual profesional.
+      </p>
+      <a href="#tentang"
+        class="mt-6 inline-block px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-600 text-white font-semibold shadow-lg hover:scale-105 hover:shadow-purple-500/50 transition transform duration-300">
+        Mulai Sekarang
+      </a>
     </div>
-  );
-};
+  </section>
 
-export default LandingPage;
+  <!-- TENTANG KAMI -->
+  <section id="tentang" class="py-20 bg-gray-900 px-6 md:px-20 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">Tentang Kami</h2>
+    <p class="max-w-3xl mx-auto text-gray-300 leading-relaxed">
+      DSRT (Digital Smart Revise Technology) adalah solusi modern untuk pengeditan visual yang menggabungkan kekuatan Artificial Intelligence
+      dan sentuhan manual profesional. Kami hadir untuk membantu kreator, fotografer, dan desainer menghasilkan karya berkualitas tinggi
+      dengan cepat dan efisien.
+    </p>
+  </section>
+
+  <!-- FITUR -->
+  <section class="py-20 bg-black px-6 md:px-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Fitur Unggulan</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+        <h3 class="text-xl font-semibold mb-3">Manual Tool + Template</h3>
+        <p class="text-gray-400">Edit manual dan gunakan template “Capsule” untuk hasil cepat dan presisi.</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+        <h3 class="text-xl font-semibold mb-3">HD + Extender</h3>
+        <p class="text-gray-400">Perbesar resolusi dan perluas gambar tanpa mengorbankan kualitas.</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+        <h3 class="text-xl font-semibold mb-3">Filter AI</h3>
+        <p class="text-gray-400">Terapkan filter cerdas yang disesuaikan dengan gaya visual pilihan Anda.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-950 py-6 text-center text-gray-500 text-sm">
+    All Rights Reserved © DSRT 2025
+  </footer>
+
+</body>
+</html>
