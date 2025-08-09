@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dashboard DSRT</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white min-h-screen">
 
   <div id="app" class="min-h-screen">
-    <!-- NAVBAR -->
+    <!-- NAV -->
     <nav class="w-full bg-gray-900 px-6 md:px-12 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-4">
         <span class="font-bold text-xl">DSRT Dashboard</span>
@@ -21,85 +21,207 @@
       </div>
     </nav>
 
-    <!-- HERO SMALL -->
-    <header class="py-8 px-6 md:px-20 bg-gradient-to-b from-transparent to-black/50">
-      <h1 class="text-3xl font-bold">Hai, selamat datang di Dashboard DSRT</h1>
-      <p class="text-gray-400 mt-2">Pilih fitur di bawah untuk mulai mengedit.</p>
-    </header>
+    <div class="flex">
+      <!-- SIDEBAR -->
+      <aside class="w-72 bg-gray-900 min-h-screen p-4 space-y-4">
+        <div class="text-gray-300 font-semibold mb-2">Fitur Utama</div>
 
-    <!-- FITUR GRID -->
-    <section class="py-10 px-6 md:px-20">
-      <h2 class="text-2xl font-bold mb-6">Fitur DSRT</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Example feature card -->
-        <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-          <h3 class="text-xl font-semibold mb-3">Manual Tool + Template</h3>
-          <p class="text-gray-400 mb-4">Edit manual & pakai template “Capsule”.</p>
-          <a href="#" class="inline-block px-4 py-2 rounded bg-gradient-to-r from-cyan-400 to-purple-600 text-sm font-semibold">Buka</a>
+        <div>
+          <button class="w-full text-left p-3 rounded hover:bg-gray-800" onclick="toggleMenu('adjust')">🎛 Adjust</button>
+          <ul id="adjust" class="pl-4 hidden text-gray-300 space-y-2">
+            <li><button class="w-full text-left" onclick="openTool('brightness')">Brightness</button></li>
+            <li><button class="w-full text-left" onclick="openTool('contrast')">Contrast</button></li>
+            <li><button class="w-full text-left" onclick="openTool('saturation')">Saturation</button></li>
+            <li><button class="w-full text-left" onclick="openTool('sharpness')">Sharpness</button></li>
+          </ul>
         </div>
 
-        <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-          <h3 class="text-xl font-semibold mb-3">HD + Extender</h3>
-          <p class="text-gray-400 mb-4">Perbesar resolusi tanpa kehilangan detail.</p>
-          <a href="#" class="inline-block px-4 py-2 rounded bg-gradient-to-r from-cyan-400 to-purple-600 text-sm font-semibold">Buka</a>
+        <div>
+          <button class="w-full text-left p-3 rounded hover:bg-gray-800" onclick="toggleMenu('filter')">🎨 Filters</button>
+          <ul id="filter" class="pl-4 hidden text-gray-300 space-y-2">
+            <li><button onclick="openTool('dsrt-classic')">DSRT Classic</button></li>
+            <li><button onclick="openTool('retro')">Retro</button></li>
+            <li><button onclick="openTool('bw')">Black & White</button></li>
+          </ul>
         </div>
 
-        <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-          <h3 class="text-xl font-semibold mb-3">Filter AI</h3>
-          <p class="text-gray-400 mb-4">Terapkan filter cerdas sesuai gaya.</p>
-          <a href="#" class="inline-block px-4 py-2 rounded bg-gradient-to-r from-cyan-400 to-purple-600 text-sm font-semibold">Buka</a>
+        <div>
+          <button class="w-full text-left p-3 rounded hover:bg-gray-800" onclick="toggleMenu('ai')">🤖 DSRT AI</button>
+          <ul id="ai" class="pl-4 hidden text-gray-300 space-y-2">
+            <li><button onclick="openTool('ai-restore')">AI Restore</button></li>
+            <li><button onclick="openTool('colorize')">Colorize B/W</button></li>
+            <li><button onclick="openTool('hdplus')">HD+ Enhance</button></li>
+            <li><button onclick="openTool('scratch')">Scratch Removal</button></li>
+          </ul>
         </div>
 
-        <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-          <h3 class="text-xl font-semibold mb-3">Restore Photo</h3>
-          <p class="text-gray-400 mb-4">Pulihkan foto lama & rusak.</p>
-          <a href="#" class="inline-block px-4 py-2 rounded bg-gradient-to-r from-cyan-400 to-purple-600 text-sm font-semibold">Buka</a>
+        <div>
+          <button class="w-full text-left p-3 rounded hover:bg-gray-800" onclick="toggleMenu('tools')">🛠 Tools</button>
+          <ul id="tools" class="pl-4 hidden text-gray-300 space-y-2">
+            <li><button onclick="openTool('crop')">Crop</button></li>
+            <li><button onclick="openTool('resize')">Resize</button></li>
+            <li><button onclick="openTool('bgreplace')">Background Replace</button></li>
+          </ul>
         </div>
 
-        <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-          <h3 class="text-xl font-semibold mb-3">Remove Watermark</h3>
-          <p class="text-gray-400 mb-4">Hapus watermark secara cepat.</p>
-          <a href="#" class="inline-block px-4 py-2 rounded bg-gradient-to-r from-cyan-400 to-purple-600 text-sm font-semibold">Buka</a>
-        </div>
+      </aside>
 
-        <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-          <h3 class="text-xl font-semibold mb-3">Background Editor</h3>
-          <p class="text-gray-400 mb-4">Ganti atau hapus background dengan realistis.</p>
-          <a href="#" class="inline-block px-4 py-2 rounded bg-gradient-to-r from-cyan-400 to-purple-600 text-sm font-semibold">Buka</a>
-        </div>
+      <!-- MAIN -->
+      <main class="flex-1 p-8">
+        <h1 class="text-2xl font-bold mb-4">Selamat Datang di DSRT</h1>
+        <p class="text-gray-400 mb-6">Pilih fitur di sidebar untuk menampilkan kontrol / submenu.</p>
 
-      </div>
-    </section>
+        <!-- WORK AREA: di sini UI editor akan muncul -->
+        <div id="work-area" class="bg-gray-900 rounded p-6 min-h-[420px]">
+          <div id="empty" class="text-gray-400">Belum ada tool terbuka. Buka fitur dari kiri (Adjust / AI / Filters).</div>
+
+          <!-- Contoh panel tool dinamis -->
+          <div id="tool-panel" class="hidden">
+            <h2 id="tool-title" class="text-xl font-semibold mb-2"></h2>
+            <div id="tool-controls" class="space-y-3">
+              <!-- controls injected by openTool() -->
+            </div>
+            <div class="mt-4">
+              <button id="btnApply" class="bg-gradient-to-r from-cyan-400 to-purple-600 px-4 py-2 rounded font-semibold" onclick="applyTool()">Apply</button>
+              <button class="ml-2 px-3 py-2 rounded border border-gray-700" onclick="closeTool()">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
   </div>
 
   <script>
-    // Protect dashboard: require session flag 'dsrt_auth' === 'true'
-    (function(){
-      const auth = sessionStorage.getItem('dsrt_auth');
-      if (auth !== 'true') {
-        // Not logged in — redirect to landing
-        window.location.href = 'index.html';
-      } else {
-        // Show user info if available
-        try {
-          const user = JSON.parse(sessionStorage.getItem('dsrt_user') || '{}');
-          const badge = document.getElementById('user-badge');
-          if (user && user.email) {
-            badge.textContent = user.name ? (user.name + ' • ' + user.email) : user.email;
-          }
-        } catch(e){}
+    // API base (sesuaikan)
+    const API_BASE = "https://www.dsrt-artweb.online/api";
+
+    // Auth check: minta token & validasi ke backend
+    (async function validate() {
+      const token = localStorage.getItem('dsrt_token');
+      if (!token) return window.location.href = 'login.html';
+      try {
+        const res = await fetch(API_BASE + '/auth/me', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (!res.ok) {
+          localStorage.removeItem('dsrt_token');
+          localStorage.removeItem('dsrt_user');
+          return window.location.href = 'login.html';
+        }
+        const user = await res.json();
+        document.getElementById('user-badge').textContent = (user.name || user.email);
+      } catch (e) {
+        console.error('Auth check failed', e);
+        // Jika backend unreachable, keluar agar aman
+        localStorage.removeItem('dsrt_token');
+        localStorage.removeItem('dsrt_user');
+        return window.location.href = 'login.html';
       }
     })();
 
-    function logout() {
-      sessionStorage.removeItem('dsrt_auth');
-      sessionStorage.removeItem('dsrt_user');
-      window.location.href = 'index.html';
+    function gotoHome(){ window.location.href = 'index.html'; }
+    function logout(){
+      localStorage.removeItem('dsrt_token'); localStorage.removeItem('dsrt_user');
+      window.location.href = 'login.html';
     }
 
-    function gotoHome() {
-      window.location.href = 'index.html';
+    // Sidebar toggles
+    function toggleMenu(id){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.toggle('hidden');
     }
+
+    // Open tool: render simple controls. Integrasikan ke backend sesuai fitur.
+    function openTool(name){
+      document.getElementById('empty').style.display = 'none';
+      const panel = document.getElementById('tool-panel');
+      const title = document.getElementById('tool-title');
+      const controls = document.getElementById('tool-controls');
+      controls.innerHTML = ''; // reset
+      panel.classList.remove('hidden');
+
+      title.textContent = formatTitle(name);
+
+      // contoh control set per tool (bisa diperluas)
+      if (name === 'brightness' || name === 'contrast' || name === 'saturation' || name === 'sharpness') {
+        controls.innerHTML = `
+          <label class="block text-gray-300">Value (-100 .. 100)</label>
+          <input id="ctrl-val" type="range" min="-100" max="100" value="0" class="w-full">
+          <div class="text-sm text-gray-400 mt-2">Nilai: <span id="ctrl-val-text">0</span></div>
+        `;
+        const r = controls.querySelector('#ctrl-val');
+        const t = controls.querySelector('#ctrl-val-text');
+        r.addEventListener('input', ()=> t.textContent = r.value);
+      } else if (name.startsWith('ai')) {
+        controls.innerHTML = `
+          <p class="text-gray-300">Opsi AI backend akan dijalankan (ini hanya UI contoh).</p>
+          <label class="block text-gray-300 mt-2">Strength (0-100)</label>
+          <input id="ctrl-strength" type="range" min="0" max="100" value="60" class="w-full">
+        `;
+      } else if (name === 'dsrt-classic' || name === 'retro' || name === 'bw') {
+        controls.innerHTML = `<p class="text-gray-300">Preview filter: <b>${name}</b></p>`;
+      } else {
+        controls.innerHTML = `<p class="text-gray-300">Kontrol untuk <b>${name}</b> akan tersedia.</p>`;
+      }
+
+      // simpan tool aktif
+      panel.dataset.tool = name;
+    }
+
+    function closeTool(){
+      document.getElementById('tool-panel').classList.add('hidden');
+      document.getElementById('empty').style.display = 'block';
+    }
+
+    function formatTitle(key){
+      return key.split('-').map(k=>k[0].toUpperCase()+k.slice(1)).join(' ');
+    }
+
+    // Apply: kirim request ke backend untuk menjalankan fitur (placeholder)
+    async function applyTool(){
+      const panel = document.getElementById('tool-panel');
+      const tool = panel.dataset.tool;
+      if (!tool) return;
+
+      // contoh payload sederhana (sesuaikan dengan API backend)
+      let payload = { tool };
+      if (document.getElementById('ctrl-val')) payload.value = document.getElementById('ctrl-val').value;
+      if (document.getElementById('ctrl-strength')) payload.strength = document.getElementById('ctrl-strength').value;
+
+      // tampilkan loading singkat
+      const btn = document.getElementById('btnApply');
+      btn.disabled = true; btn.textContent = 'Processing...';
+
+      try {
+        const token = localStorage.getItem('dsrt_token');
+        const res = await fetch(API_BASE + '/features/' + encodeURIComponent(tool), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(()=>({message:'Gagal menjalankan fitur'}));
+          alert(err.message || 'Fitur gagal dijalankan');
+        } else {
+          // response may contain job id, preview url, or updated image data
+          const data = await res.json();
+          alert('Fitur dijalankan. Cek hasil/preview di gallery atau job list.');
+          // TODO: tampilkan preview/hasil langsung di work-area bila backend menyediakan URL
+          // contoh: showPreview(data.previewUrl)
+        }
+      } catch (e) {
+        console.error(e);
+        alert('Gagal terhubung ke server fitur. Cek koneksi/API.');
+      } finally {
+        btn.disabled = false; btn.textContent = 'Apply';
+      }
+    }
+
   </script>
 
 </body>
