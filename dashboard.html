@@ -1,55 +1,130 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard DSRT</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-black text-white">
+<style>
+  .feature-card {
+    background: linear-gradient(145deg, #0f9b8e, #ff7e00);
+    border-radius: 20px;
+    padding: 25px 15px;
+    text-align: center;
+    box-shadow:
+      0 0 15px #ff7e00aa,
+      inset 0 0 20px #0f9b8e;
+    cursor: pointer;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      background 0.3s ease;
+  }
 
-  <!-- NAVBAR -->
-  <nav class="w-full bg-gray-900 px-6 md:px-12 py-4 flex justify-between items-center">
-    <span class="font-bold text-xl">DSRT Dashboard</span>
-    <button onclick="logout()" class="bg-red-500 px-4 py-2 rounded font-semibold hover:bg-red-600 transition">Logout</button>
-  </nav>
+  .feature-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: linear-gradient(145deg, #5e4b8b, #ff9f2e);
+    box-shadow:
+      0 0 25px #5e4b8bcc,
+      inset 0 0 25px #ff9f2e;
+  }
 
-  <!-- FITUR GRID -->
-  <section class="py-10 px-6 md:px-20">
-    <h2 class="text-3xl font-bold mb-8">Fitur DSRT</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-        <h3 class="text-xl font-semibold mb-3">Manual Tool + Template</h3>
-        <p class="text-gray-400">Edit manual dan gunakan template “Capsule” untuk hasil cepat dan presisi.</p>
-      </div>
-      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-        <h3 class="text-xl font-semibold mb-3">HD + Extender</h3>
-        <p class="text-gray-400">Perbesar resolusi dan perluas gambar tanpa mengorbankan kualitas.</p>
-      </div>
-      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-        <h3 class="text-xl font-semibold mb-3">Filter AI</h3>
-        <p class="text-gray-400">Terapkan filter cerdas sesuai gaya visual pilihan Anda.</p>
-      </div>
-      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-        <h3 class="text-xl font-semibold mb-3">Restore Photo</h3>
-        <p class="text-gray-400">Pulihkan foto lama dan rusak dengan teknologi AI terbaru.</p>
-      </div>
-      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-        <h3 class="text-xl font-semibold mb-3">Remove Watermark</h3>
-        <p class="text-gray-400">Hilangkan watermark dari gambar secara cepat dan bersih.</p>
-      </div>
-      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
-        <h3 class="text-xl font-semibold mb-3">Background Editor</h3>
-        <p class="text-gray-400">Ganti atau hapus background dengan hasil yang realistis.</p>
-      </div>
-    </div>
-  </section>
+  .feature-name {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 0 4px #000000bb;
+    color: #fff;
+  }
 
-  <script>
-    function logout() {
-      window.location.href = 'index.html';
+  lord-icon {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 0 4px #00fff7cc);
+  }
+
+  /* Modal */
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 15, 15, 0.9);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+
+  .modal-content {
+    background: #201e2f;
+    border-radius: 25px;
+    padding: 25px 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow:
+      0 0 20px #00fff7cc,
+      inset 0 0 30px #ff7e00cc;
+    color: #eee;
+    text-align: center;
+  }
+
+  .modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #00fff7;
+    text-shadow: 0 0 6px #00f6ffbb;
+  }
+
+  .modal-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .modal-content ul li {
+    margin: 8px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #00fff7aa;
+    color: #ffe;
+  }
+
+  .close-btn {
+    background: #ff7e00;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #0f2027;
+    cursor: pointer;
+    box-shadow:
+      0 0 12px #ff7e00cc;
+    transition: background 0.3s ease;
+  }
+
+  .close-btn:hover {
+    background: #ff9f2e;
+  }
+
+  @media (max-width: 480px) {
+    .feature-card {
+      padding: 20px 10px;
     }
-  </script>
+    lord-icon {
+      width: 60px;
+      height: 60px;
+    }
+    .feature-name {
+      font-size: 1rem;
+    }
+  }
+</style>
 
-</body>
-</html>
+<!-- Modal HTML -->
+<div class="modal" id="featureModal">
+  <div class="modal-content">
+    <h2 id="modalTitle"></h2>
+    <ul id="modalList"></ul>
+    <button class="close-btn" onclick="closeModal()">Tutup</button>
+  </div>
+</div>
