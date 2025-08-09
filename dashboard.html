@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard DSRT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
 
+  <!-- NAVBAR -->
+  <nav class="w-full bg-gray-900 px-6 md:px-12 py-4 flex justify-between items-center">
+    <span class="font-bold text-xl">DSRT Dashboard</span>
+    <button onclick="logout()" class="bg-red-500 px-4 py-2 rounded font-semibold hover:bg-red-600 transition">Logout</button>
+  </nav>
+
+  <!-- FITUR GRID -->
+  <section class="py-10 px-6 md:px-20">
+    <h2 class="text-3xl font-bold mb-8">Fitur DSRT</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+        <h3 class="text-xl font-semibold mb-3">Manual Tool + Template</h3>
+        <p class="text-gray-400">Edit manual dan gunakan template “Capsule” untuk hasil cepat dan presisi.</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+        <h3 class="text-xl font-semibold mb-3">HD + Extender</h3>
+        <p class="text-gray-400">Perbesar resolusi dan perluas gambar tanpa mengorbankan kualitas.</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+        <h3 class="text-xl font-semibold mb-3">Filter AI</h3>
+        <p class="text-gray-400">Terapkan filter cerdas sesuai gaya visual pilihan Anda.</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+        <h3 class="text-xl font-semibold mb-3">Restore Photo</h3>
+        <p class="text-gray-400">Pulihkan foto lama dan rusak dengan teknologi AI terbaru.</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+        <h3 class="text-xl font-semibold mb-3">Remove Watermark</h3>
+        <p class="text-gray-400">Hilangkan watermark dari gambar secara cepat dan bersih.</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition">
+        <h3 class="text-xl font-semibold mb-3">Background Editor</h3>
+        <p class="text-gray-400">Ganti atau hapus background dengan hasil yang realistis.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function logout() {
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>
