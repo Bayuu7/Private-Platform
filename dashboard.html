@@ -1,4 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DSRT Dashboard</title>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f9b8e, #ff7e00, #5e4b8b);
+    min-height: 100vh;
+    color: #eee;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  }
+
+  header img {
+    height: 50px;
+    margin-right: 15px;
+    filter: drop-shadow(0 0 3px #00fff7);
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1.2px;
+    text-shadow: 0 0 6px #00f6ffaa;
+  }
+
+  main {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    gap: 25px;
+  }
+
   .feature-card {
     background: linear-gradient(145deg, #0f9b8e, #ff7e00);
     border-radius: 20px;
@@ -119,8 +165,17 @@
     }
   }
 </style>
+</head>
+<body>
 
-<!-- Modal HTML -->
+<header>
+  <img id="dsrtLogo" alt="DSRT Logo" src="">
+  <h1>DSRT Dashboard</h1>
+</header>
+
+<main id="featureGrid"></main>
+
+<!-- Modal -->
 <div class="modal" id="featureModal">
   <div class="modal-content">
     <h2 id="modalTitle"></h2>
@@ -128,3 +183,65 @@
     <button class="close-btn" onclick="closeModal()">Tutup</button>
   </div>
 </div>
+
+<script>
+  // Ganti URL logo Supabase kamu di sini:
+  const SUPABASE_LOGO_URL = "https://your-supabase-url/logo.png";
+  document.getElementById('dsrtLogo').src = SUPABASE_LOGO_URL;
+
+  // Data fitur populer DSRT
+  const features = [
+    {
+      name: "Photo Retouch",
+      icon: "https://cdn.lordicon.com/gqzfzudq.json",
+      subs: ["Skin Smoothing", "Blemish Removal", "Whitening"]
+    },
+    {
+      name: "AI Enhance",
+      icon: "https://cdn.lordicon.com/lecprnjb.json",
+      subs: ["Upscale 4K", "Noise Removal", "Sharpen"]
+    },
+    {
+      name: "Templates",
+      icon: "https://cdn.lordicon.com/dxjqoygy.json",
+      subs: ["Social Media", "Business Card", "Poster"]
+    },
+    {
+      name: "Filters",
+      icon: "https://cdn.lordicon.com/wloilxuq.json",
+      subs: ["Vintage", "Cinematic", "Black & White"]
+    }
+  ];
+
+  const container = document.getElementById('featureGrid');
+
+  features.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'feature-card';
+    card.innerHTML = `
+      <lord-icon 
+        src="${f.icon}" 
+        trigger="hover" 
+        colors="primary:#00fff7,secondary:#ff7e00"
+        style="width: 80px; height: 80px;">
+      </lord-icon>
+      <div class="feature-name">${f.name}</div>
+    `;
+    card.onclick = () => openModal(f.name, f.subs);
+    container.appendChild(card);
+  });
+
+  function openModal(title, items) {
+    document.getElementById('modalTitle').textContent = title;
+    const list = document.getElementById('modalList');
+    list.innerHTML = items.map(i => `<li>${i}</li>`).join('');
+    document.getElementById('featureModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('featureModal').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
