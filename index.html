@@ -17,6 +17,12 @@
 </head>
 <body class="bg-black text-white">
 
+  <!-- NAVBAR -->
+  <nav class="fixed w-full z-20 top-0 left-0 bg-transparent px-6 md:px-12 py-4 flex justify-between items-center">
+    <a href="#" class="text-xl font-bold">DSRT</a>
+    <button onclick="openModal('login')" class="bg-gradient-to-r from-cyan-400 to-purple-600 px-4 py-2 rounded-full font-semibold hover:scale-105 transition">Login</button>
+  </nav>
+
   <!-- HERO SECTION PARALLAX -->
   <section class="relative min-h-screen flex flex-col items-center justify-center text-center parallax"
     style="background-image: url('https://source.unsplash.com/1920x1080/?fantasy,abstract');">
@@ -67,6 +73,62 @@
   <footer class="bg-gray-950 py-6 text-center text-gray-500 text-sm">
     All Rights Reserved © DSRT 2025
   </footer>
+
+  <!-- LOGIN/REGISTER/FORGOT MODAL -->
+  <div id="authModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-gray-900 p-6 rounded-xl w-full max-w-md relative">
+      <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white">&times;</button>
+      <div id="form-login">
+        <h2 class="text-2xl font-bold mb-4">Login</h2>
+        <input type="email" placeholder="Email" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
+        <input type="password" placeholder="Password" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
+        <button onclick="goToDashboard()" class="w-full bg-gradient-to-r from-cyan-400 to-purple-600 py-2 rounded font-semibold">Masuk</button>
+        <div class="mt-4 text-sm flex justify-between">
+          <a href="#" onclick="switchForm('register')" class="text-cyan-400">Register</a>
+          <a href="#" onclick="switchForm('forgot')" class="text-purple-400">Forgot Password?</a>
+        </div>
+      </div>
+
+      <div id="form-register" class="hidden">
+        <h2 class="text-2xl font-bold mb-4">Register</h2>
+        <input type="text" placeholder="Nama" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
+        <input type="email" placeholder="Email" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
+        <input type="password" placeholder="Password" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
+        <button class="w-full bg-gradient-to-r from-cyan-400 to-purple-600 py-2 rounded font-semibold">Daftar</button>
+        <div class="mt-4 text-sm">
+          <a href="#" onclick="switchForm('login')" class="text-cyan-400">Sudah punya akun? Login</a>
+        </div>
+      </div>
+
+      <div id="form-forgot" class="hidden">
+        <h2 class="text-2xl font-bold mb-4">Forgot Password</h2>
+        <input type="email" placeholder="Email" class="w-full mb-3 p-2 rounded bg-gray-800 border border-gray-700" />
+        <button class="w-full bg-gradient-to-r from-cyan-400 to-purple-600 py-2 rounded font-semibold">Kirim Reset Link</button>
+        <div class="mt-4 text-sm">
+          <a href="#" onclick="switchForm('login')" class="text-cyan-400">Kembali ke Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(form) {
+      document.getElementById('authModal').classList.remove('hidden');
+      switchForm(form);
+    }
+    function closeModal() {
+      document.getElementById('authModal').classList.add('hidden');
+    }
+    function switchForm(form) {
+      document.getElementById('form-login').classList.add('hidden');
+      document.getElementById('form-register').classList.add('hidden');
+      document.getElementById('form-forgot').classList.add('hidden');
+      document.getElementById(`form-${form}`).classList.remove('hidden');
+    }
+    function goToDashboard() {
+      window.location.href = 'dashboard.html';
+    }
+  </script>
 
 </body>
 </html>
