@@ -1,70 +1,38 @@
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DSRT - Digital Smart Revise Technology</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">DSRT</div>
-    <nav>
-      <a href="#features">Fitur</a>
-      <a href="#about">Tentang Kami</a>
-    </nav>
-  </header>
+import React from "react";
 
-  <main>
-    <section class="hero">
-      <h1>DSRT</h1>
-      <p>Digital Smart Revise Technology</p>
-      <button id="btnTry">Coba Sekarang</button>
-    </section>
+const LandingPage = () => {
+  return (
+    <div className="landing-page">
+      <header className="header">
+        <div className="logo">DSRT</div>
+        <button className="login-btn">Log in</button>
+      </header>
+      <section className="hero">
+        <h1 className="hero-title">Desain Bebas. Edit Tanpa Batas.</h1>
+        <p className="hero-subtitle">
+          DSRT adalah ruang kreatif modern yang memadukan AI dan kontrol manual
+          profesior untuk hasil visual yang maksimal.
+        </p>
+        <button className="cta-btn">Mulai Sekarang</button>
+      </section>
+      <section className="features">
+        <h2 className="features-title">Fitur Unggulan</h2>
+        <div className="feature-cards">
+          {['AI Tools', 'Manual Tools', 'Restore', 'Remove Watermark', 'Background'].map((title, idx) => (
+            <div className="feature-card" key={idx}>
+              <div className="feature-icon">
+                {/* Add icon here, for now it's just a placeholder */}
+                <span>💡</span>
+              </div>
+              <h3>{title}</h3>
+              <p>Deskripsi fitur {title}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
 
-    <section id="login-section" class="modal hidden">
-      <h2>Login ke DSRT</h2>
-      <form id="login-form">
-        <input type="email" id="email" placeholder="Email" required />
-        <input type="password" id="password" placeholder="Password" required />
-        <button type="submit">Login</button>
-      </form>
-      <p><a href="#" id="forgot-password">Lupa Password?</a></p>
-      <p>Belum punya akun? <a href="#" id="go-register">Daftar</a></p>
-    </section>
-
-    <section id="register-section" class="modal hidden">
-      <h2>Daftar Akun Baru</h2>
-      <form id="register-form">
-        <input type="email" id="reg-email" placeholder="Email" required />
-        <input type="password" id="reg-password" placeholder="Password" required />
-        <input type="password" id="reg-password-confirm" placeholder="Konfirmasi Password" required />
-        <button type="submit">Daftar</button>
-      </form>
-      <p>Sudah punya akun? <a href="#" id="go-login">Login</a></p>
-    </section>
-
-    <section id="features" class="section">
-      <h2>Fitur DSRT</h2>
-      <div class="feature-grid">
-        <div class="feature-item">Manual Tools</div>
-        <div class="feature-item">Restorasi AI</div>
-        <div class="feature-item">Filter Warna</div>
-        <!-- Tambahkan fitur lain -->
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <h2>Tentang Kami</h2>
-      <p>DSRT hadir untuk memberikan solusi digital terbaik dalam revisi dan restorasi foto...</p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© DSRT2025 - All rights reserved.</p>
-  </footer>
-
-  <script src="js/main.js" type="module"></script>
-</body>
-</html>
+export default LandingPage;
